@@ -1,0 +1,25 @@
+1692526053793	Delete element
+1692526057704	Delete element
+1692526061869	Delete element
+1692526325943	Delete element
+1692526330074	Delete element
+1692526420847	Delete element
+1692584172355	Rename package 'com.spring.biz.comment'
+1692584181257	Rename type 'CommentDAO'
+1692584190482	Rename type 'CommentDAO2'
+1692584197283	Rename type 'CommentService'
+1692584203119	Rename type 'CommentVO'
+1692602614408	Rename type 'CommentServiceImpl'
+1692667395360	Rename type 'CommentsServiceImpl'
+1692667427137	Rename type 'CommentServiceImpl'
+1692686367586	Delete element
+1692686372287	Rename resource 'mypage (1).jsp'
+1692686581435	Delete element
+1692773860009	Rename resource 'mypage.jsp'
+1692773865499	Rename resource 'mypage3.jsp'
+1692857736662	Rename package 'com.npnc.biz.page'
+1692863385360	Delete element
+1692863390924	Rename resource 'mypage (2).jsp'
+1692922458831	Delete element
+1692922469874	Delete element
+1692945115467	Move file

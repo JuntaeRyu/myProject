@@ -1,0 +1,126 @@
+
+8월 21, 2023 09:21:09.633 NEW SESSION
+8월 21, 2023 09:21:09.633 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 21, 2023 15:15:52.715 NEW SESSION
+8월 21, 2023 15:15:52.715 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 21, 2023 17:36:12.827 [7712:8092:0821/173612.826:ERROR:device_event_log_impl.cc(222)] [17:36:12.826] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: 요소가 없습니다. (0x490)
+
+8월 23, 2023 16:27:01.12 NEW SESSION
+8월 23, 2023 16:27:01.12 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 24, 2023 09:31:30.988 NEW SESSION
+8월 24, 2023 09:31:30.988 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 24, 2023 10:22:46.923 [11100:11916:0824/102246.922:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint (unset) for first_image_paint 0.249 s
+8월 24, 2023 10:22:47.94 [11100:11916:0824/102247.093:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:47.214 [11100:11916:0824/102247.213:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:47.671 [11100:11916:0824/102247.671:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:47.892 [11100:11916:0824/102247.892:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:48.34 [11100:11916:0824/102248.034:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:48.191 [11100:11916:0824/102248.191:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:48.304 [11100:11916:0824/102248.303:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:48.500 [11100:11916:0824/102248.500:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:48.631 [11100:11916:0824/102248.631:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:48.972 [11100:11916:0824/102248.972:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:49.110 [11100:11916:0824/102249.110:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:49.250 [11100:11916:0824/102249.250:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:49.393 [11100:11916:0824/102249.393:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:49.547 [11100:11916:0824/102249.546:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:49.735 [11100:11916:0824/102249.734:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:49.843 [11100:11916:0824/102249.842:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:49.968 [11100:11916:0824/102249.968:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:50.113 [11100:11916:0824/102250.113:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:50.297 [11100:11916:0824/102250.296:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:50.468 [11100:11916:0824/102250.468:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:50.668 [11100:11916:0824/102250.668:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:50.771 [11100:11916:0824/102250.771:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:50.930 [11100:11916:0824/102250.929:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:51.31 [11100:11916:0824/102251.031:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:51.178 [11100:11916:0824/102251.177:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:51.308 [11100:11916:0824/102251.307:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:51.461 [11100:11916:0824/102251.460:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:51.618 [11100:11916:0824/102251.617:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:51.769 [11100:11916:0824/102251.769:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:51.944 [11100:11916:0824/102251.944:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:52.131 [11100:11916:0824/102252.130:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:52.271 [11100:11916:0824/102252.271:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:52.490 [11100:11916:0824/102252.490:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:52.638 [11100:11916:0824/102252.637:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:52.771 [11100:11916:0824/102252.770:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:52.935 [11100:11916:0824/102252.934:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:53.68 [11100:11916:0824/102253.067:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:53.188 [11100:11916:0824/102253.188:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:53.487 [11100:11916:0824/102253.487:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:53.627 [11100:11916:0824/102253.627:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:53.746 [11100:11916:0824/102253.746:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:53.876 [11100:11916:0824/102253.876:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:54.00 [11100:11916:0824/102253.999:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:54.159 [11100:11916:0824/102254.158:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:54.289 [11100:11916:0824/102254.288:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:54.405 [11100:11916:0824/102254.405:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:54.514 [11100:11916:0824/102254.514:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:54.637 [11100:11916:0824/102254.636:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:54.795 [11100:11916:0824/102254.794:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:54.981 [11100:11916:0824/102254.980:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:22:55.93 [11100:11916:0824/102255.092:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.269 s for first_image_paint 0.249 s
+8월 24, 2023 10:41:13.251 [11100:11916:0824/104113.249:ERROR:interface_endpoint_client.cc(702)] Message 5 rejected by interface blink.mojom.WidgetHost
+8월 24, 2023 10:41:22.786 [11100:11916:0824/104122.786:ERROR:interface_endpoint_client.cc(702)] Message 5 rejected by interface blink.mojom.WidgetHost
+8월 24, 2023 12:10:33.453 [11100:8280:0824/121033.452:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+8월 24, 2023 14:51:05.995 [11100:8280:0824/145105.995:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+8월 24, 2023 14:55:11.420 [11100:11916:0824/145511.419:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+
+8월 24, 2023 17:00:25.465 NEW SESSION
+8월 24, 2023 17:00:25.465 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 24, 2023 21:59:28.572 NEW SESSION
+8월 24, 2023 21:59:28.573 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 24, 2023 22:01:02.992 [9720:14288:0824/220102.992:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+8월 24, 2023 22:14:48.230 [9720:14288:0824/221448.230:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+8월 24, 2023 22:17:19.157 [9720:12308:0824/221719.157:ERROR:device_event_log_impl.cc(222)] [22:17:19.157] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: 요소가 없습니다. (0x490)
+
+8월 25, 2023 16:01:29.293 NEW SESSION
+8월 25, 2023 16:01:29.293 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 25, 2023 16:08:00.821 [884:11088:0825/160800.821:ERROR:interface_endpoint_client.cc(702)] Message 1 rejected by interface blink.mojom.WidgetHost
+
+8월 28, 2023 09:37:58.444 NEW SESSION
+8월 28, 2023 09:37:58.444 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 28, 2023 09:42:03.951 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 28, 2023 09:52:06.806 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 28, 2023 10:31:27.429 [13876:3560:0828/103127.428:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+8월 28, 2023 10:41:34.05 [13876:10992:0828/104134.004:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:34.141 [13876:10992:0828/104134.138:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:34.225 [13876:10992:0828/104134.224:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:34.759 [13876:10992:0828/104134.759:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:34.982 [13876:10992:0828/104134.982:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:35.124 [13876:10992:0828/104135.124:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:35.272 [13876:10992:0828/104135.272:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:35.373 [13876:10992:0828/104135.373:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:35.695 [13876:10992:0828/104135.694:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:35.839 [13876:10992:0828/104135.839:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:35.958 [13876:10992:0828/104135.957:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:36.122 [13876:10992:0828/104136.122:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:36.243 [13876:10992:0828/104136.242:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:36.418 [13876:10992:0828/104136.417:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:36.644 [13876:10992:0828/104136.643:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:36.783 [13876:10992:0828/104136.782:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:36.929 [13876:10992:0828/104136.927:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:37.88 [13876:10992:0828/104137.087:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:37.215 [13876:10992:0828/104137.214:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:37.349 [13876:10992:0828/104137.349:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:37.583 [13876:10992:0828/104137.582:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:37.715 [13876:10992:0828/104137.714:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:37.805 [13876:10992:0828/104137.804:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:41:37.918 [13876:10992:0828/104137.918:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.248 s for first_image_paint 0.232 s
+8월 28, 2023 10:45:45.385 [13876:3560:0828/104545.384:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+
+8월 28, 2023 17:48:25.607 NEW SESSION
+8월 28, 2023 17:48:25.607 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 28, 2023 17:48:37.216 [7468:13856:0828/174837.213:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+8월 28, 2023 23:48:40.250 [7468:13856:0828/234840.246:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+8월 28, 2023 23:48:40.371 [7468:13856:0828/234840.371:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+8월 29, 2023 08:55:36.829 [7468:13856:0829/085536.789:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+8월 29, 2023 08:55:36.836 [7468:14524:0829/085536.789:ERROR:get_updates_processor.cc(261)] PostClientToServerMessage() failed during GetUpdates with error 2
+8월 29, 2023 08:55:50.645 [7468:13856:0829/085550.645:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+
+9월 13, 2023 21:20:57.639 NEW SESSION
+9월 13, 2023 21:20:57.639 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.

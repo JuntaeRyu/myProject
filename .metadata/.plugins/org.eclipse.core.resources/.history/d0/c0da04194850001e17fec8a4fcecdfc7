@@ -1,0 +1,126 @@
+package com.spring.biz.board;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+@Repository("boardDAO")
+public class BoardDAO2 {
+	private final String sql_INSERT = "INSERT INTO BOARD (BOARDNUM, TITLE, CONTENT, MID, CATEGORY, CREATE_TIME) VALUES((SELECT NVL(MAX(BOARDNUM),9999)+1 FROM BOARD), ?, ?, ?, ?, SYSTIMESTAMP)";
+	
+	private final String sql_SELECT_BY_PAGE = "SELECT B.BOARDNUM, B.TITLE, B.CONTENT, B.MID, B.PROHIBITCNT, B.CATEGORY, "
+			+ "TO_CHAR(B.CREATE_TIME, 'YYYY-MM-DD') AS CREATE_TIME, M.NICKNAME, "
+			+ "(SELECT COUNT(CASE WHEN NUM = B.BOARDNUM THEN 1 END) FROM RECOMMEND) AS RCNT "
+			+ "FROM BOARD B JOIN MEMBER M ON B.MID = M.MID WHERE B.CATEGORY = 1 OR B.CATEGORY = 2 ORDER BY BOARDNUM DESC";
+	
+	private final String sql_SELECTALL_CATEGORY = "SELECT B.BOARDNUM, B.TITLE, B.CONTENT, B.MID, B.PROHIBITCNT, B.CATEGORY, TO_CHAR(B.CREATE_TIME, 'YYYY-MM-DD') AS CREATE_TIME, M.NICKNAME, (SELECT COUNT(CASE WHEN NUM = B.BOARDNUM THEN 1 END) FROM RECOMMEND) AS RCNT FROM BOARD B JOIN MEMBER M ON B.MID=M.MID WHERE B.CATEGORY=? ORDER BY BOARDNUM DESC";
+	private final String sql_SELECTALL_PROHIBITCNT = "SELECT B.BOARDNUM, B.TITLE, B.CONTENT, B.MID, B.PROHIBITCNT, B.CATEGORY, TO_CHAR(B.CREATE_TIME, 'YYYY-MM-DD') AS CREATE_TIME, M.NICKNAME, (SELECT COUNT(CASE WHEN NUM = B.BOARDNUM THEN 1 END) FROM RECOMMEND) AS RCNT FROM BOARD B JOIN MEMBER M ON B.MID=M.MID WHERE B.PROHIBITCNT >= 3 ORDER BY BOARDNUM DESC";
+	private final String sql_SELECTALL_MYBOARD = "SELECT B.BOARDNUM, B.TITLE, B.CONTENT, B.MID, B.PROHIBITCNT, B.CATEGORY, TO_CHAR(B.CREATE_TIME, 'YYYY-MM-DD') AS CREATE_TIME, M.NICKNAME, (SELECT COUNT(CASE WHEN NUM = B.BOARDNUM THEN 1 END) FROM RECOMMEND) AS RCNT FROM BOARD B JOIN MEMBER M ON B.MID=M.MID WHERE B.MID=? ORDER BY BOARDNUM DESC";
+	private final String sql_SELECTONE = "SELECT B.BOARDNUM, B.TITLE, B.CONTENT, B.MID, B.PROHIBITCNT, B.CATEGORY, TO_CHAR(B.CREATE_TIME, 'YYYY-MM-DD') AS CREATE_TIME, M.NICKNAME, (SELECT COUNT(CASE WHEN NUM = B.BOARDNUM THEN 1 END) FROM RECOMMEND) AS RCNT FROM BOARD B JOIN MEMBER M ON B.MID=M.MID WHERE B.BOARDNUM=?";
+	private final String sql_UPDATE_BOARD = "UPDATE BOARD SET TITLE=?, CONTENT=? WHERE BOARDNUM=?";
+	private final String sql_UPDATE_PROHIBIT = "UPDATE BOARD SET PROHIBITCNT=(SELECT COUNT(CASE WHEN NUM=? THEN 1 END ) FROM PROHIBIT) WHERE BOARDNUM=?";
+	private final String sql_DELETE = "DELETE FROM BOARD WHERE BOARDNUM=?";
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
+	public BoardDAO2() {
+	}
+
+	public boolean insert(BoardVO bVO) {
+		System.out.println("BoardDAO2 로그 insert 메서드");
+		int result= jdbcTemplate.update(sql_INSERT,bVO.getTitle(),bVO.getContent(),bVO.getMemberID(),bVO.getCategory());
+		if (result <=0 ) {
+			return false;
+		}
+		return true;
+	}
+
+	public List<BoardVO> selectAll(BoardVO bVO) {
+		System.out.println("BoardDAO2 로그 selectAll 메서드");
+		if (bVO.getSearchCondition() != null) {
+			if (bVO.getSearchCondition().equals("전체커뮤니티")) {
+
+				return jdbcTemplate.query(sql_SELECT_BY_PAGE,new BoardRowMapper());
+			}
+			else if (bVO.getSearchCondition().equals("커뮤니티")) {
+				Object[] args= {bVO.getCategory()};
+				return jdbcTemplate.query(sql_SELECTALL_CATEGORY, args,new BoardRowMapper());
+			}
+			else if (bVO.getSearchCondition().equals("신고글")) {
+				return jdbcTemplate.query(sql_SELECTALL_PROHIBITCNT,new BoardRowMapper());
+			}
+			else if (bVO.getSearchCondition().equals("본인글")) {
+				Object[] args= {bVO.getMemberID()};
+				return jdbcTemplate.query(sql_SELECTALL_MYBOARD, args,new BoardRowMapper());
+			}
+		}
+		return null;
+	}
+
+	public BoardVO selectOne(BoardVO bVO) { 
+		System.out.println("BoardDAO2 로그 selectOne 메서드");
+		try {
+			Object[] args= {bVO.getBoardNum()};
+			return jdbcTemplate.queryForObject(sql_SELECTONE,args,new BoardRowMapper());
+		}
+		catch(EmptyResultDataAccessException e) {
+			System.out.println("해결~");
+			return null;
+		}
+	}
+
+	public boolean update(BoardVO bVO) {
+		System.out.println("BoardDAO2 로그 update 메서드");
+		int result=0;
+		if (bVO.getSearchCondition().equals("글수정")) {
+			result=jdbcTemplate.update(sql_UPDATE_BOARD,bVO.getTitle(),bVO.getContent(),bVO.getBoardNum());
+		} else if (bVO.getSearchCondition().equals("신고")) {
+			result=jdbcTemplate.update(sql_UPDATE_PROHIBIT,bVO.getBoardNum(),bVO.getBoardNum());
+		}
+
+		if (result <= 0) {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean delete(BoardVO bVO) {
+		System.out.println("BoardDAO2 로그 delete 메서드");
+		int result=jdbcTemplate.update(sql_DELETE,bVO.getBoardNum());
+		if (result <= 0) {
+			return false;
+		}
+		return true;
+	}
+}
+
+//SELECT B.BOARDNUM, B.TITLE, B.CONTENT, B.MID, B.PROHIBITCNT, B.CATEGORY, B.DATE,
+//M.NICKNAME, (SELECT COUNT(CASE WHEN NUM = B.BOARDNUM THEN 1 END) FROM RECOMMEND) AS RCNT
+//FROM BOARD B JOIN MEMBER M ON B.MID=M.MID WHERE B.CATEGORY=? ORDER BY BOARDNUM DESC
+class BoardRowMapper implements RowMapper<BoardVO>{
+
+	@Override
+	public BoardVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+		BoardVO bdata= new BoardVO();
+		bdata.setBoardNum(rs.getInt("BOARDNUM"));
+		bdata.setTitle(rs.getString("TITLE"));
+		bdata.setContent(rs.getString("CONTENT"));
+		bdata.setMid(rs.getString("MID"));
+		bdata.setProhibitCnt(rs.getInt("PROHIBITCNT"));
+		bdata.setCategory(rs.getInt("CATEGORY"));
+		bdata.setBoardDate(rs.getString("CREATE_TIME"));
+		bdata.setNickName(rs.getString("NICKNAME"));
+		bdata.setRecommendCnt(rs.getInt("RCNT"));
+		return bdata;
+	}
+
+
+}
+

@@ -1,0 +1,124 @@
+package com.spring.biz.board;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+@Repository("boardDAO")
+public class BoardDAO2 {
+	private final String sql_INSERT = "INSERT INTO BOARD (BOARDNUM, TITLE, CONTENT, MEMBERID, CATEGORY, BOARDDATE, BOARDIMG) VALUES((SELECT NVL(MAX(BOARDNUM),9999)+1 FROM BOARD), ?, ?, ?, ?, SYSTIMESTAMP, ?)";
+	
+	private final String sql_SELECT_BY_PAGE = "SELECT B.BOARDNUM, B.TITLE, B.CONTENT, B.MEMBERID, B.PROHIBITCNT, B.CATEGORY, "
+			+ "TO_CHAR(B.BOARDDATE, 'YYYY-MM-DD') AS BOARDDATE, M.NICKNAME, B.BOARDIMG "
+			+ "(SELECT COUNT(CASE WHEN COMMONNUM = B.BOARDNUM THEN 1 END) FROM RECOMMEND) AS RECOMMENDCNT "
+			+ "FROM BOARD B JOIN MEMBER M ON B.MEMBERID = M.MEMBERID WHERE B.CATEGORY IN (1,2) ORDER BY BOARDNUM DESC";
+	
+	private final String sql_SELECTALL_CATEGORY = "SELECT B.BOARDNUM, B.TITLE, B.CONTENT, B.MEMBERID, B.PROHIBITCNT, B.CATEGORY, TO_CHAR(B.BOARDDATE, 'YYYY-MM-DD') AS BOARDDATE, M.NICKNAME, (SELECT COUNT(CASE WHEN NUM = B.BOARDNUM THEN 1 END) FROM RECOMMEND) AS RECOMMENDCNT, B.BOARDIMG FROM BOARD B JOIN MEMBER M ON B.MEMBERID=M.MEMBERID WHERE B.CATEGORY=? ORDER BY BOARDNUM DESC";
+	private final String sql_SELECTALL_PROHIBITCNT = "SELECT B.BOARDNUM, B.TITLE, B.CONTENT, B.MEMBERID, B.PROHIBITCNT, B.CATEGORY, TO_CHAR(B.BOARDDATE, 'YYYY-MM-DD') AS BOARDDATE, M.NICKNAME, (SELECT COUNT(CASE WHEN NUM = B.BOARDNUM THEN 1 END) FROM RECOMMEND) AS RECOMMENDCNT, B.BOARDIMG FROM BOARD B JOIN MEMBER M ON B.MEMBERID=M.MEMBERID WHERE B.PROHIBITCNT >= 3 ORDER BY BOARDNUM DESC";
+	private final String sql_SELECTALL_MYBOARD = "SELECT B.BOARDNUM, B.TITLE, B.CONTENT, B.MEMBERID, B.PROHIBITCNT, B.CATEGORY, TO_CHAR(B.BOARDDATE, 'YYYY-MM-DD') AS BOARDDATE, M.NICKNAME, (SELECT COUNT(CASE WHEN NUM = B.BOARDNUM THEN 1 END) FROM RECOMMEND) AS RECOMMENDCNT, B.BOARDIMG FROM BOARD B JOIN MEMBER M ON B.MEMBERID=M.MEMBERID WHERE B.MEMBERID=? ORDER BY BOARDNUM DESC";
+	private final String sql_SELECTONE = "SELECT B.BOARDNUM, B.TITLE, B.CONTENT, B.MEMBERID, B.PROHIBITCNT, B.CATEGORY, TO_CHAR(B.BOARDDATE, 'YYYY-MM-DD') AS BOARDDATE, M.NICKNAME, (SELECT COUNT(CASE WHEN NUM = B.BOARDNUM THEN 1 END) FROM RECOMMEND) AS RECOMMENDCNT, B.BOARDIMG FROM BOARD B JOIN MEMBER M ON B.MEMBERID=M.MEMBERID WHERE B.BOARDNUM=?";
+	private final String sql_UPDATE_BOARD = "UPDATE BOARD SET TITLE=?, CONTENT=?, BOARDIMG=? WHERE BOARDNUM=?";
+	private final String sql_UPDATE_PROHIBIT = "UPDATE BOARD SET PROHIBITCNT=(SELECT COUNT(CASE WHEN NUM=? THEN 1 END ) FROM PROHIBIT) WHERE BOARDNUM=?";
+	private final String sql_DELETE = "DELETE FROM BOARD WHERE BOARDNUM=?";
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
+	public boolean insert(BoardVO bVO) {
+		System.out.println("BoardDAO2 로그 insert 메서드");
+			int result= jdbcTemplate.update(sql_INSERT,bVO.getTitle(),bVO.getContent(),bVO.getMemberID(),bVO.getCategory(), bVO.getBoardImg());
+		if (result <=0 ) {
+			return false;
+		}
+		return true;
+	}
+
+	public List<BoardVO> selectAll(BoardVO bVO) {
+		System.out.println("BoardDAO2 로그 selectAll 메서드");
+		if (bVO.getSearchCondition() != null) {
+			if (bVO.getSearchCondition().equals("totalCommunity")) {
+
+				return jdbcTemplate.query(sql_SELECT_BY_PAGE,new BoardRowMapper());
+			}
+			else if (bVO.getSearchCondition().equals("community")) {
+				Object[] args= {bVO.getCategory()};
+				return jdbcTemplate.query(sql_SELECTALL_CATEGORY, args,new BoardRowMapper());
+			}
+			else if (bVO.getSearchCondition().equals("prohibitBoard")) {
+				return jdbcTemplate.query(sql_SELECTALL_PROHIBITCNT,new BoardRowMapper());
+			}
+			else if (bVO.getSearchCondition().equals("ownBoard")) {
+				Object[] args= {bVO.getMemberID()};
+				return jdbcTemplate.query(sql_SELECTALL_MYBOARD, args,new BoardRowMapper());
+			}
+		}
+		return null;
+	}
+
+	public BoardVO selectOne(BoardVO bVO) { 
+		System.out.println("BoardDAO2 로그 selectOne 메서드");
+		try {
+			Object[] args= {bVO.getBoardNum()};
+			return jdbcTemplate.queryForObject(sql_SELECTONE,args,new BoardRowMapper());
+		}
+		catch(EmptyResultDataAccessException e) {
+			System.out.println("해결~");
+			return null;
+		}
+	}
+
+	public boolean update(BoardVO bVO) {
+		System.out.println("BoardDAO2 로그 update 메서드");
+		int result=0;
+		if (bVO.getSearchCondition().equals("updateBoard")) {
+			result=jdbcTemplate.update(sql_UPDATE_BOARD,bVO.getTitle(),bVO.getContent(),bVO.getBoardImg(),bVO.getBoardNum());
+		} else if (bVO.getSearchCondition().equals("prohibit")) {
+			result=jdbcTemplate.update(sql_UPDATE_PROHIBIT,bVO.getBoardNum(),bVO.getBoardNum());
+		}
+
+		if (result <= 0) {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean delete(BoardVO bVO) {
+		System.out.println("BoardDAO2 로그 delete 메서드");
+		int result=jdbcTemplate.update(sql_DELETE,bVO.getBoardNum());
+		if (result <= 0) {
+			return false;
+		}
+		return true;
+	}
+}
+
+//SELECT B.BOARDNUM, B.TITLE, B.CONTENT, B.MEMBERID, B.PROHIBITCNT, B.CATEGORY, B.DATE,
+//M.NICKNAME, (SELECT COUNT(CASE WHEN NUM = B.BOARDNUM THEN 1 END) FROM RECOMMEND) AS RCNT
+//FROM BOARD B JOIN MEMBER M ON B.MEMBERID=M.MEMBERID WHERE B.CATEGORY=? ORDER BY BOARDNUM DESC
+class BoardRowMapper implements RowMapper<BoardVO>{
+
+	@Override
+	public BoardVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+		BoardVO bdata= new BoardVO();
+		bdata.setBoardNum(rs.getInt("BOARDNUM"));
+		bdata.setTitle(rs.getString("TITLE"));
+		bdata.setContent(rs.getString("CONTENT"));
+		bdata.setMemberID(rs.getString("MEMBERID"));
+		bdata.setProhibitCnt(rs.getInt("PROHIBITCNT"));
+		bdata.setRecommendCnt(rs.getInt("RECOMMENDCNT"));
+		bdata.setCategory(rs.getInt("CATEGORY"));
+		bdata.setBoardDate(rs.getString("BOARDDATE"));
+		bdata.setBoardImg(rs.getString("BOARDIMG"));
+		bdata.setNickName(rs.getString("NICKNAME"));
+		return bdata;
+	}
+
+
+}
+

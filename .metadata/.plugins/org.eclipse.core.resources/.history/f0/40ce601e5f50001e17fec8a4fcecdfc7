@@ -1,0 +1,116 @@
+package com.spring.biz.member;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+@Repository("memberDAO")
+public class MemberDAO2 {
+	
+	// SQL 쿼리문
+	private final String sql_INSERT = "INSERT INTO MEMBER (MEMBERID, MEMBERPW, NAME, NICKNAME, EMAIL) VALUES (?, ?, ?, ?, ?)";
+	private final String sql_SELECTONE_DUPLICATE = "SELECT MEMBERID,MEMBERPW,NAME,NICKNAME,EMAIL FROM MEMBER WHERE MEMBERID=?"; // 중복검사
+	private final String sql_SELECTONE_DUPLICATE_NICKNAME = "SELECT MEMBERID,MEMBERPW,NAME,NICKNAME,EMAIL FROM MEMBER WHERE NICKNAME=?"; // 닉네임중복검사
+	private final String sql_SELECTONE_DUPLICATE_EMAIL = "SELECT MEMBERID,MEMBERPW,NAME,NICKNAME,EMAIL FROM MEMBER WHERE EMAIL=?"; // 이메일중복검사
+	private final String sql_SELECTONE_LOGIN = "SELECT MEMBERID,MEMBERPW,NAME,NICKNAME,EMAIL FROM MEMBER WHERE MEMBERID=? AND MEMBERPW=?"; // 로그인
+	private final String sql_UPDATE = "UPDATE MEMBER SET MEMBERPW=? WHERE MEMBERID=?";
+	private final String sql_DELETE = "DELETE FROM MEMBER WHERE MEMBERID=?";
+	// JDBC(자바 데이터베이스 커넥트) 도구
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
+	public boolean insert(MemberVO mVO) { // DB에 객체정보 저장
+
+		// 쿼리문 수정 및 실행 후 결과를 저장
+		int result = jdbcTemplate.update(sql_INSERT, mVO.getMemberID(), mVO.getMemberPW(), mVO.getName(), mVO.getNickName(), mVO.getEmail());
+
+		// 검색 결과 리턴
+		if (result<=0) {
+			return false; // 저장 실패
+		}
+		return true;
+	} // insert
+
+	public List<MemberVO> selectAll(MemberVO mVO) {
+		return null;
+	}
+
+	public MemberVO selectOne(MemberVO mVO) {
+
+		// 쿼리문 수정 및 실행 후 결과를 저장
+		try {
+		if (mVO.getSearchCondition().equals("중복검사")) {
+			Object[] args = { mVO.getMemberID() };
+			return jdbcTemplate.queryForObject(sql_SELECTONE_DUPLICATE, args, new MemberRowMapper());
+		}
+		else if (mVO.getSearchCondition().equals("닉네임중복검사")) {
+			Object[] args = { mVO.getNickName() };
+			return jdbcTemplate.queryForObject(sql_SELECTONE_DUPLICATE_NICKNAME, args, new MemberRowMapper());
+		}
+		else if (mVO.getSearchCondition().equals("이메일중복검사")) {
+			Object[] args = { mVO.getEmail() };
+			return jdbcTemplate.queryForObject(sql_SELECTONE_DUPLICATE_EMAIL, args, new MemberRowMapper());
+		}
+		else if (mVO.getSearchCondition().equals("로그인")) {
+			Object[] args = { mVO.getMemberID(), mVO.getMemberPW() };
+			return jdbcTemplate.queryForObject(sql_SELECTONE_LOGIN, args, new MemberRowMapper());
+		}
+		}
+		catch(EmptyResultDataAccessException e) {
+			System.out.println("해결~");
+			return null;
+		}
+		
+		return null;
+		// 검색 실패라면
+	}
+
+	public boolean update(MemberVO mVO) {
+		
+		// 쿼리문 수정 및 실행 후 결과를 저장
+		int result = jdbcTemplate.update(sql_UPDATE, mVO.getMemberPW(), mVO.getMemberID());
+		
+		// 성공 리턴
+		if (result <=0) {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean delete(MemberVO mVO) {
+		
+		// 쿼리문 수정 및 실행 후 결과를 저장
+		int result = jdbcTemplate.update(sql_DELETE, mVO.getMemberID());
+		
+		// 성공 리턴
+		if (result <=0) {
+			return false;
+		}
+		return true;
+	}
+}
+
+class MemberRowMapper implements RowMapper<MemberVO> {
+
+	@Override
+	public MemberVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+		MemberVO mdata = new MemberVO();
+		
+		mdata.setMemberID(rs.getString("MEMBERID"));
+		mdata.setMemberPW(rs.getString("MEMBERPW"));
+		mdata.setName(rs.getString("NAME"));
+		mdata.setNickName(rs.getString("NICKNAME"));
+		mdata.setEmail(rs.getString("EMAIL"));
+		
+		return mdata;
+	}
+
+}
+
+

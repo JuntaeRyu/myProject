@@ -1,0 +1,37 @@
+package com.spring.biz.memberProfile;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+
+@Service("memberProfileService")
+public class MemberProfileServiceImpl implements MemberProfileService{
+
+	@Autowired
+	private MemberProfileDAO2 mpDAO;
+	
+	public MemberProfileVO selectOne(MemberProfileVO mpVO) {
+		return mpDAO.selectOne(mpVO);
+	}
+
+	public List<MemberProfileVO> selectAll(MemberProfileVO mpVO) {
+		return mpDAO.selectAll(mpVO);
+	}
+
+	public boolean insert(MemberProfileVO mpVO) {
+		return mpDAO.insert(mpVO);
+	}
+
+	public boolean update(MemberProfileVO mpVO) {
+		return mpDAO.update(mpVO);
+	}
+
+	public boolean delete(MemberProfileVO mpVO) {
+		return mpDAO.delete(mpVO);
+	}
+
+
+}

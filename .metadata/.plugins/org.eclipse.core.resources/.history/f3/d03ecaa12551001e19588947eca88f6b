@@ -1,0 +1,102 @@
+package com.spring.biz.memberProfile;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+
+@Repository("memberProfileDAO")
+public class MemberProfileDAO2 {
+
+	// SQL 쿼리문
+	private final String sql_INSERT = "INSERT INTO MEMBER (MEMBERID, MEMBERPW, NAME, NICKNAME, EMAIL, PHONENUM, GENDER, ADDRESS) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	private final String sql_SELECTONE_DUPLICATE = "SELECT MEMBERID,MEMBERPW,NAME,NICKNAME,EMAIL,PHONENUM,GENDER,ADDRESS FROM MEMBER WHERE MEMBERID=?"; // 중복검사
+	private final String sql_UPDATE = "UPDATE MEMBER SET MEMBERPW=? WHERE MEMBERID=?";
+	private final String sql_DELETE = "DELETE FROM MEMBER WHERE MEMBERID=?";
+	// JDBC(자바 데이터베이스 커넥트) 도구
+	// 중복검사에 쿼리문 굳이 다필요한지 확인
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
+	public boolean insert(MemberProfileVO mpVO) { // DB에 객체정보 저장
+
+		// 쿼리문 수정 및 실행 후 결과를 저장
+		int result = jdbcTemplate.update(sql_INSERT, mpVO.getMemberID(), mpVO.getMemberPW(), mpVO.getName(), mpVO.getNickName(), mpVO.getEmail(), mpVO.getPhoneNum(), mpVO.getGender(), mpVO.getAddress());
+
+		// 검색 결과 리턴
+		if (result<=0) {
+			return false; // 저장 실패
+		}
+		return true;
+	} // insert
+
+	public List<MemberProfileVO> selectAll(MemberProfileVO mpVO) {
+		return null;
+	}
+
+	public MemberProfileVO selectOne(MemberProfileVO mpVO) {
+
+		// 쿼리문 수정 및 실행 후 결과를 저장
+		try {
+			if (mpVO.getSearchCondition().equals("duplicateID")) {
+				Object[] args = { mpVO.getMemberID() };
+				return jdbcTemplate.queryForObject(sql_SELECTONE_DUPLICATE, args, new MemberRowMapper());
+			}
+		}
+		catch(EmptyResultDataAccessException e) {
+			System.out.println("해결~");
+			return null;
+		}
+
+		return null;
+		// 검색 실패라면
+	}
+
+	public boolean update(MemberProfileVO mpVO) {
+
+		// 쿼리문 수정 및 실행 후 결과를 저장
+		int result = jdbcTemplate.update(sql_UPDATE, mpVO.getMemberPW(), mpVO.getMemberID());
+
+		// 성공 리턴
+		if (result <=0) {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean delete(MemberProfileVO mpVO) {
+
+		// 쿼리문 수정 및 실행 후 결과를 저장
+		int result = jdbcTemplate.update(sql_DELETE, mpVO.getMemberID());
+
+		// 성공 리턴
+		if (result <=0) {
+			return false;
+		}
+		return true;
+	}
+}
+
+class MemberRowMapper implements RowMapper<MemberProfileVO> {
+
+	@Override
+	public MemberProfileVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+		MemberProfileVO mpdata = new MemberProfileVO();
+
+		mpdata.setProfileNum(rs.getString("PROFILENUM"));
+		mpdata.setMemberID(rs.getString("MEMBERID"));
+		mpdata.setShortIntro(rs.getString("SHORTINTRO"));
+		mpdata.setIntro(rs.getString("INTRO"));
+		mpdata.setProhibitCnt(rs.getString("PROHIBITCNT"));
+
+		return mpdata;
+	}
+
+}
